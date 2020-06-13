@@ -2,12 +2,13 @@
 
 use exercicioN2;
 
-drop table if exists Person;
-create table Person(
-	personId int not null,
-	personName varchar(255) not null,
-	personAge int not null,
-	primary key ( personId )
+
+drop table if exists Pessoa;
+create table Pessoa(
+	pessoaId int not null,
+	pessoaNome varchar(255) not null,
+	pessoaIdade int not null,
+	primary key ( pessoaId )
 );
 
 drop table if exists Endereco;
@@ -16,8 +17,12 @@ create table Endereco(
 	enderecoCidade varchar(255) not null,
 	enderecoRua varchar(255) not null,
 	enderecoNumero int not null,
-	primary key ( enderecoId )
+	primary key ( enderecoId ),
+	foreign key (enderecoId) references Pessoa (pessoaId)
 );
 
-select * from Person;
+
+
+select * from Pessoa;
 select * from Endereco;
+

@@ -7,6 +7,8 @@ public class Endereco {
     private String enderecoRua;
     private int enderecoNumero;
 
+    public Endereco() { }
+
 	public Endereco( int informeEnderecoId, String informeEnderecoCidade, String informeEnderecoRua, int informeEnderecoNumero ) {
 		this.enderecoId = informeEnderecoId;
 		this.enderecoCidade = informeEnderecoCidade;
@@ -44,7 +46,7 @@ public class Endereco {
 
 	// Imprimi endereco
 	public String toString() {
-		return "Id: " + this.enderecoId + "\nCidade: " + this.enderecoCidade + ".\nRua: " + this.enderecoRua + ", " + this.enderecoNumero + ".";
+		return "\nId: " + this.enderecoId + "\nCidade: " + this.enderecoCidade + ".\nRua: " + this.enderecoRua + ", " + this.enderecoNumero + ".";
     }
     
 }
