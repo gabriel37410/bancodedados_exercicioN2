@@ -26,3 +26,5 @@ create table Endereco(
 select * from Pessoa;
 select * from Endereco;
 
+
+select distinct p.pessoaId, p.pessoaNome, p.pessoaIdade, enderecoCidade, enderecoRua, enderecoNumero from Pessoa p JOIN Endereco on Endereco.enderecoId = p.pessoaId
