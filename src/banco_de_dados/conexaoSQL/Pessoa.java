@@ -42,6 +42,6 @@ public class Pessoa {
 	
 	// Printing pessoaal class data
 	public String toString() {
-		return "Hey, my name is " + this.pessoaNome + ".\nMy age is " + this.pessoaIdade + ".\nMy id is " + this.pessoaId + ".\n";
+		return "Nome: " + this.pessoaNome + ".\nIdade: " + this.pessoaIdade + ".\nID: " + this.pessoaId + ".\n";
 	}
 }

@@ -46,7 +46,7 @@ public class Endereco {
 
 	// Imprimi endereco
 	public String toString() {
-		return "\nId: " + this.enderecoId + "\nCidade: " + this.enderecoCidade + ".\nRua: " + this.enderecoRua + ", " + this.enderecoNumero + ".";
+		return "\nCidade: " + this.enderecoCidade + ".\nRua: " + this.enderecoRua + ", " + this.enderecoNumero + ".";
     }
     
 }
