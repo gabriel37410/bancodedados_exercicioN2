@@ -69,73 +69,6 @@ public class ConnectionFactory {
 			e.printStackTrace();
 		}
 
-/*	
-		//ATUALIZA PESSOA==================================================================================
-        String updateString = "UPDATE Pessoa SET pessoaNome = ?, pessoaIdade = ? WHERE pessoaId=?";
-        // Tentativa de atualizar valor na tabela
-        try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
-        	  PreparedStatement stmt = connectionUrl.prepareStatement(updateString);
-        	) {
-        	
-        	Pessoa p1 = new Pessoa(1, "Mariano", 20); // a pessoa alterada
-        	stmt.setString(1, p1.getPessoaNome()); // insira na primeira ? o nome da pessoa
-        	stmt.setInt(2, p1.getPessoaIdade()); // insira na terceira ? a idade da pessoa
-        	// insira na última ? o id da pessoa
-        	stmt.setInt(3, p1.getPessoaId());	
-        	
-        	stmt.executeUpdate(); // executa o update
-        	
-        	System.out.println("Pessoa alterada!");
-        	
-		} 
-		catch (SQLException e) {
-        	e.printStackTrace();
-        }
-*/
-/*
-		//DELETA PESSOA==================================================================================
-		String deleteString = "DELETE Pessoa WHERE pessoaId=?";
-		try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
-			  PreparedStatement stmt = connectionUrl.prepareStatement(deleteString);
-	  		) {
-        	
-        	int personId = 2;
-        	// insira na ? o id da pessoa
-        	stmt.setInt(1, personId);
-        	
-        	stmt.executeUpdate(); // executa o delete
-        	
-        	System.out.println("Pessoa removida!");
-        	
-		} 
-		catch (SQLException e) {
-        	e.printStackTrace();
-		}
-*/		
-/*
-		//FAZ UM SELECT NA PESSOA==================================================================================
-        try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
-        	  Statement stmt = connectionUrl.createStatement(); // não tem variável, se quiser variável, precisa do prepare
-        	) {
-        	
-            String SQL = "SELECT * FROM Pessoa"; // consulta de SELECT
-            ResultSet rs = stmt.executeQuery(SQL); // executa o SELECT
-
-            // itera pelos dados - enquanto houver uma linha para ler ....
-            while (rs.next()) {
-            	Pessoa p = new Pessoa(); // cria um objeto de pessoa
-            	p.setPessoaId(rs.getInt("pessoaId")); // insere id recuperado do banco na pessoa
-            	p.setPessoaNome(rs.getString("pessoaNome")); // insere nome recuperado do banco na pessoa
-            	p.setPessoaIdade(rs.getInt("pessoaIdade")); // insere idade recuperada do banco na pessoa
-
-            	System.out.println(p); // imprime a pessoa
-            }
-        }
-        // Handle any errors that may have occurred.
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
 
 		//INSERE ENDERECO==================================================================================
 		String insertEndereco = "INSERT INTO Endereco (enderecoId, enderecoCidade, enderecoRua, enderecoNumero) VALUES (?, ?, ?, ?)";
@@ -180,6 +113,26 @@ public class ConnectionFactory {
 		}
 
 /*
+		//FAZ UM SELECT NA PESSOA==================================================================================
+        try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
+        	  Statement stmt = connectionUrl.createStatement(); // não tem variável, se quiser variável, precisa do prepare
+        	) {
+        	
+            String SQL = "SELECT * FROM Pessoa"; // consulta de SELECT
+            ResultSet rs = stmt.executeQuery(SQL); // executa o SELECT
+            // itera pelos dados - enquanto houver uma linha para ler ....
+            while (rs.next()) {
+            	Pessoa p = new Pessoa(); // cria um objeto de pessoa
+            	p.setPessoaId(rs.getInt("pessoaId")); // insere id recuperado do banco na pessoa
+            	p.setPessoaNome(rs.getString("pessoaNome")); // insere nome recuperado do banco na pessoa
+            	p.setPessoaIdade(rs.getInt("pessoaIdade")); // insere idade recuperada do banco na pessoa
+            	System.out.println(p); // imprime a pessoa
+            }
+        }
+        // Handle any errors that may have occurred.
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
 		//FAZ UM SELECT NO ENDERECO==================================================================================
         try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
         	  Statement stmt = connectionUrl.createStatement(); // não tem variável, se quiser variável, precisa do prepare
@@ -187,7 +140,6 @@ public class ConnectionFactory {
         	
             String SQL = "SELECT * FROM Endereco"; // consulta de SELECT
             ResultSet rs = stmt.executeQuery(SQL); // executa o SELECT
-
             // itera pelos dados - enquanto houver uma linha para ler ....
             while (rs.next()) {
 				Endereco e = new Endereco(); // cria um objeto do endereco
@@ -195,7 +147,6 @@ public class ConnectionFactory {
 				e.setEnderecoCidade(rs.getString("enderecoCidade"));
 				e.setEnderecoRua(rs.getString("enderecoRua"));
 				e.setEnderecoNumero(rs.getInt("enderecoNumero"));
-
             	System.out.println(e); // imprime o endereco
             }
         }
@@ -232,7 +183,138 @@ public class ConnectionFactory {
         // Handle any errors that may have occurred.
         catch (SQLException e) {
             e.printStackTrace();
-		}
+        }
+       
+		//ATUALIZA PESSOA==================================================================================
+        String updateString = "UPDATE Pessoa SET pessoaNome = ?, pessoaIdade = ? WHERE pessoaId=?";
+        // Tentativa de atualizar valor na tabela
+        try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
+        	  PreparedStatement stmt = connectionUrl.prepareStatement(updateString);
+        	) {
+        	
+        	Pessoa p2 = new Pessoa(2, "Bernadete", 75); // a pessoa alterada
+        	stmt.setString(1, p2.getPessoaNome()); // insira na primeira ? o nome da pessoa
+        	stmt.setInt(2, p2.getPessoaIdade()); // insira na terceira ? a idade da pessoa
+        	// insira na última ? o id da pessoa
+        	stmt.setInt(3, p2.getPessoaId());	
+        	
+            stmt.executeUpdate(); // executa o update
+            
+        	Pessoa p3 = new Pessoa(3, "Argemiro", 89); // a pessoa alterada
+        	stmt.setString(1, p3.getPessoaNome()); // insira na primeira ? o nome da pessoa
+        	stmt.setInt(2, p3.getPessoaIdade()); // insira na terceira ? a idade da pessoa
+        	// insira na última ? o id da pessoa
+        	stmt.setInt(3, p3.getPessoaId());	
+        	
+            stmt.executeUpdate(); // executa o update
 
+        	System.out.println("Pessoas alteradas!");
+        	
+		} 
+		catch (SQLException e) {
+        	e.printStackTrace();
+		}
+		
+        
+		//ATUALIZA ENDEREÇO==================================================================================
+        String updateEndereco = "UPDATE Endereco SET enderecoCidade = ?, enderecoRua = ?, enderecoNumero = ? WHERE enderecoId=?";
+        
+        // Tentativa de atualizar valor na tabela
+        try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
+        	  PreparedStatement stmt = connectionUrl.prepareStatement(updateEndereco);
+        	) {
+        	
+            Endereco e2 = new Endereco(2, "Passos", "Dr. Jose Mendes", 63);
+            stmt.setString(1, e2.getEnderecoCidade());
+            stmt.setString(2, e2.getEnderecoRua());
+			stmt.setInt(3, e2.getEnderecoNumero());
+			stmt.setInt(4, e2.getEnderecoId());	
+        	
+            stmt.executeUpdate(); // executa o update
+            
+            Endereco e3 = new Endereco(3, "Passos", "Juca Stockler", 714);
+            stmt.setString(1, e3.getEnderecoCidade());
+            stmt.setString(2, e3.getEnderecoRua());
+			stmt.setInt(3, e3.getEnderecoNumero());
+			stmt.setInt(4, e3.getEnderecoId());
+        	
+            stmt.executeUpdate(); // executa o update
+            
+
+        	System.out.println("Endereços alterados!");
+        	
+		} 
+		catch (SQLException e) {
+        	e.printStackTrace();
+        }
+
+		//DELETA ENDEREÇO==================================================================================
+		String deleteEndereco = "DELETE Endereco WHERE enderecoId=?";
+		try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
+			  PreparedStatement stmt = connectionUrl.prepareStatement(deleteEndereco);
+	  		) {
+        	
+        	int enderecoId = 1;
+        	stmt.setInt(1, enderecoId);
+        	
+        	stmt.executeUpdate(); // executa o delete
+        	
+        	System.out.println("Endereço removido!");
+        	
+		} 
+		catch (SQLException e) {
+        	e.printStackTrace();
+		}
+		
+		//DELETA PESSOA==================================================================================
+		String deleteString = "DELETE Pessoa WHERE pessoaId=?";
+		try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
+			  PreparedStatement stmt = connectionUrl.prepareStatement(deleteString);
+	  		) {
+        	
+        	int pessoaId = 1;
+        	// insira na ? o id da pessoa
+        	stmt.setInt(1, pessoaId);
+        	
+        	stmt.executeUpdate(); // executa o delete
+        	
+        	System.out.println("Pessoa removida!");
+        	
+		} 
+		catch (SQLException e) {
+        	e.printStackTrace();
+        }
+
+
+		//FAZ UM SELECT COM JOIN==================================================================================
+        try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
+        	  Statement stmt = connectionUrl.createStatement(); // não tem variável, se quiser variável, precisa do prepare
+        	) {
+        	
+            String SQL = "select distinct p.pessoaId, p.pessoaNome, p.pessoaIdade, enderecoCidade, enderecoRua, enderecoNumero from Pessoa p JOIN Endereco on Endereco.enderecoId = p.pessoaId"; // consulta de SELECT
+            ResultSet rs = stmt.executeQuery(SQL); // executa o SELECT
+
+            // itera pelos dados - enquanto houver uma linha para ler ....
+            while (rs.next()) {
+
+				Endereco e = new Endereco(); // cria um objeto do endereco
+				e.setEnderecoCidade(rs.getString("enderecoCidade"));
+				e.setEnderecoRua(rs.getString("enderecoRua"));
+				e.setEnderecoNumero(rs.getInt("enderecoNumero"));
+				System.out.println(e); // imprime o endereco
+				
+				Pessoa p = new Pessoa(); // cria um objeto de pessoa
+            	p.setPessoaId(rs.getInt("pessoaId")); // insere id recuperado do banco na pessoa
+            	p.setPessoaNome(rs.getString("pessoaNome")); // insere nome recuperado do banco na pessoa
+            	p.setPessoaIdade(rs.getInt("pessoaIdade")); // insere idade recuperada do banco na pessoa
+				System.out.println(p); // imprime a pessoa
+            }
+        }
+        // Handle any errors that may have occurred.
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        
 	}
 }
