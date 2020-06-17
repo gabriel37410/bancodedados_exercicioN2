@@ -5,13 +5,15 @@ public class Pessoa {
 	private int pessoaId;
 	private String pessoaNome;
 	private int pessoaIdade;
+	private int IdEndereco;
 	
 	public Pessoa() { }
 
-	public Pessoa( int informedPessoaId, String informedPessoaNome, int informedPessoaIdade ) {
+	public Pessoa( int informedPessoaId, String informedPessoaNome, int informedPessoaIdade, int informeEndereco ) {
 		this.pessoaId = informedPessoaId;
 		this.pessoaNome = informedPessoaNome;
 		this.pessoaIdade = informedPessoaIdade;
+		this.IdEndereco = informeEndereco;
 	}
 	
 	// Method Getters
@@ -26,6 +28,11 @@ public class Pessoa {
 	public int getPessoaIdade() {
 		return this.pessoaIdade;
 	}
+
+	public int getIdEndereco() {
+		return this.IdEndereco;
+	}
+	
 	
 	// Method Setters
 	public void setPessoaId( int informedPessoaId ) {
@@ -38,6 +45,10 @@ public class Pessoa {
 	
 	public void setPessoaIdade( int informedPessoaIdade ) {
 		this.pessoaIdade = informedPessoaIdade;
+	}
+
+	public void setIdEndereco( int informeEndereco ) {
+		this.IdEndereco = informeEndereco;
 	}
 	
 	// Printing pessoaal class data

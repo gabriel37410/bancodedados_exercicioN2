@@ -28,48 +28,6 @@ public class ConnectionFactory {
 		}
 
 
-		//INSERE PESSOA==================================================================================
-		String insertString = "INSERT INTO Pessoa (pessoaId, pessoaNome, pessoaIdade) VALUES (?, ?, ?)";
-		// Tentativa de inserir valor na tabela
-		try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password);
-			  PreparedStatement stmt = connectionUrl.prepareStatement(insertString);
-			) {
-			Pessoa p1 = new Pessoa(1, "Maria", 50);
-			stmt.setInt(1, p1.getPessoaId()); // insira na primeira ? o id da pessoa
-			stmt.setString(2, p1.getPessoaNome()); // insira na segunda ? o nome da pessoa
-			stmt.setInt(3, p1.getPessoaIdade()); // insira na terceira ? a idade da pessoa
-
-			stmt.executeUpdate(); // executa o insert
-
-			Pessoa p2 = new Pessoa(2, "Lucia", 24);
-			// insira na primeira ? o id da pessoa
-			stmt.setInt(1, p2.getPessoaId());
-			stmt.setString(2, p2.getPessoaNome()); // insira na segunda ? o nome da pessoa
-			stmt.setInt(3, p2.getPessoaIdade()); // insira na terceira ? a idade da pessoa
-
-			stmt.executeUpdate(); // executa o insert
-
-			Pessoa p3 = new Pessoa(3, "João", 45);
-			// insira na primeira ? o id da pessoa
-			stmt.setInt(1, p3.getPessoaId());
-			stmt.setString(2, p3.getPessoaNome()); // insira na segunda ? o nome da pessoa
-			stmt.setInt(3, p3.getPessoaIdade()); // insira na terceira ? a idade da pessoa
-
-			stmt.executeUpdate(); // executa o insert
-
-			Pessoa p4 = new Pessoa(4, "Flavia", 31);
-			// insira na primeira ? o id da pessoa
-			stmt.setInt(1, p4.getPessoaId());
-			stmt.setString(2, p4.getPessoaNome()); // insira na segunda ? o nome da pessoa
-			stmt.setInt(3, p4.getPessoaIdade()); // insira na terceira ? a idade da pessoa
-
-			stmt.executeUpdate(); // executa o insert
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-
 		//INSERE ENDERECO==================================================================================
 		String insertEndereco = "INSERT INTO Endereco (enderecoId, enderecoCidade, enderecoRua, enderecoNumero) VALUES (?, ?, ?, ?)";
 		// Tentativa de inserir valor na tabela
@@ -111,6 +69,53 @@ public class ConnectionFactory {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+
+		//INSERE PESSOA==================================================================================
+		String insertString = "INSERT INTO Pessoa (pessoaId, pessoaNome, pessoaIdade, IdEndereco) VALUES (?, ?, ?, ?)";
+		// Tentativa de inserir valor na tabela
+		try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password);
+			  PreparedStatement stmt = connectionUrl.prepareStatement(insertString);
+			) {
+			Pessoa p1 = new Pessoa(1, "Maria", 50, 1);
+			stmt.setInt(1, p1.getPessoaId()); // insira na primeira ? o id da pessoa
+			stmt.setString(2, p1.getPessoaNome()); // insira na segunda ? o nome da pessoa
+			stmt.setInt(3, p1.getPessoaIdade()); // insira na terceira ? a idade da pessoa
+			stmt.setInt(4, p1.getIdEndereco());
+
+			stmt.executeUpdate(); // executa o insert
+
+			Pessoa p2 = new Pessoa(2, "Lucia", 24, 2);
+			// insira na primeira ? o id da pessoa
+			stmt.setInt(1, p2.getPessoaId());
+			stmt.setString(2, p2.getPessoaNome()); // insira na segunda ? o nome da pessoa
+			stmt.setInt(3, p2.getPessoaIdade()); // insira na terceira ? a idade da pessoa
+			stmt.setInt(4, p2.getIdEndereco());
+
+			stmt.executeUpdate(); // executa o insert
+
+			Pessoa p3 = new Pessoa(3, "João", 45, 3);
+			// insira na primeira ? o id da pessoa
+			stmt.setInt(1, p3.getPessoaId());
+			stmt.setString(2, p3.getPessoaNome()); // insira na segunda ? o nome da pessoa
+			stmt.setInt(3, p3.getPessoaIdade()); // insira na terceira ? a idade da pessoa
+			stmt.setInt(4, p3.getIdEndereco());
+
+			stmt.executeUpdate(); // executa o insert
+
+			Pessoa p4 = new Pessoa(4, "Flavia", 31, 4);
+			// insira na primeira ? o id da pessoa
+			stmt.setInt(1, p4.getPessoaId());
+			stmt.setString(2, p4.getPessoaNome()); // insira na segunda ? o nome da pessoa
+			stmt.setInt(3, p4.getPessoaIdade()); // insira na terceira ? a idade da pessoa
+			stmt.setInt(4, p4.getIdEndereco());
+
+			stmt.executeUpdate(); // executa o insert
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 
 /*
 		//FAZ UM SELECT NA PESSOA==================================================================================
@@ -192,19 +197,19 @@ public class ConnectionFactory {
         	  PreparedStatement stmt = connectionUrl.prepareStatement(updateString);
         	) {
         	
-        	Pessoa p2 = new Pessoa(2, "Bernadete", 75); // a pessoa alterada
+        	Pessoa p2 = new Pessoa(2, "Bernadete", 75, 2); // a pessoa alterada
         	stmt.setString(1, p2.getPessoaNome()); // insira na primeira ? o nome da pessoa
-        	stmt.setInt(2, p2.getPessoaIdade()); // insira na terceira ? a idade da pessoa
-        	// insira na última ? o id da pessoa
-        	stmt.setInt(3, p2.getPessoaId());	
+			stmt.setInt(2, p2.getPessoaIdade()); // insira na terceira ? a idade da pessoa
+			stmt.setInt(3, p2.getPessoaId()); // insira na última ? o id da pessoa
+
         	
             stmt.executeUpdate(); // executa o update
             
-        	Pessoa p3 = new Pessoa(3, "Argemiro", 89); // a pessoa alterada
+        	Pessoa p3 = new Pessoa(3, "Argemiro", 89, 3); // a pessoa alterada
         	stmt.setString(1, p3.getPessoaNome()); // insira na primeira ? o nome da pessoa
-        	stmt.setInt(2, p3.getPessoaIdade()); // insira na terceira ? a idade da pessoa
-        	// insira na última ? o id da pessoa
-        	stmt.setInt(3, p3.getPessoaId());	
+			stmt.setInt(2, p3.getPessoaIdade()); // insira na terceira ? a idade da pessoa
+			stmt.setInt(3, p3.getPessoaId()); // insira na última ? o id da pessoa
+
         	
             stmt.executeUpdate(); // executa o update
 
@@ -246,26 +251,9 @@ public class ConnectionFactory {
 		} 
 		catch (SQLException e) {
         	e.printStackTrace();
-        }
-
-		//DELETA ENDEREÇO==================================================================================
-		String deleteEndereco = "DELETE Endereco WHERE enderecoId=?";
-		try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
-			  PreparedStatement stmt = connectionUrl.prepareStatement(deleteEndereco);
-	  		) {
-        	
-        	int enderecoId = 1;
-        	stmt.setInt(1, enderecoId);
-        	
-        	stmt.executeUpdate(); // executa o delete
-        	
-        	System.out.println("Endereço removido!");
-        	
-		} 
-		catch (SQLException e) {
-        	e.printStackTrace();
 		}
 		
+
 		//DELETA PESSOA==================================================================================
 		String deleteString = "DELETE Pessoa WHERE pessoaId=?";
 		try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
@@ -284,6 +272,25 @@ public class ConnectionFactory {
 		catch (SQLException e) {
         	e.printStackTrace();
         }
+
+
+		//DELETA ENDEREÇO==================================================================================
+		String deleteEndereco = "DELETE Endereco WHERE enderecoId=?";
+		try ( Connection connectionUrl = DriverManager.getConnection(databaseConnectionUrl, user, password); 
+			  PreparedStatement stmt = connectionUrl.prepareStatement(deleteEndereco);
+	  		) {
+        	
+        	int enderecoId = 1;
+        	stmt.setInt(1, enderecoId);
+        	
+        	stmt.executeUpdate(); // executa o delete
+        	
+        	System.out.println("Endereço removido!");
+        	
+		} 
+		catch (SQLException e) {
+        	e.printStackTrace();
+		}
 
 
 		//FAZ UM SELECT COM JOIN==================================================================================
